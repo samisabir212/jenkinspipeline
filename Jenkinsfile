@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     stages{
@@ -8,14 +7,14 @@ pipeline {
             }
             post {
                 success {
-                    echo 'Now Archiving.....'
+                    echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
         stage ('Deploy to Staging'){
             steps {
-                Build job: 'Deploy_To_Staging'
+                build job: 'deploy-to-staging'
             }
         }
     }
