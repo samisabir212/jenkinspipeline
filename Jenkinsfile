@@ -12,6 +12,7 @@ pipeline {
     }
 
     stages {
+
             stage('Build'){
                 steps {
                     sh 'mvn clean package'
@@ -27,16 +28,17 @@ pipeline {
                 parallel{
                     stage('Deploy to Staging'){
                         steps {
-                             sh "scp -i /Users/sami/Desktop/ssh_aws_key/tomcat-staging.pem **/target/*.war ec2-user@${params.tomcat_stage}:/var/lib/tomcat7/webapps"
+                             sh "chmod 400 tomcat-staging.pem scp -i /Users/sami/Desktop/ssh_aws_key/tomcat-staging.pem **/target/*.war ec2-user@${params.tomcat_stage}:/var/lib/tomcat7/webapps"
                         }
                     }
                     stage ("Deploy to Production") {
                         steps {
-                             sh "scp -i /Users/sami/Desktop/ssh_aws_key/tomcat-prod.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                             sh "chmod 400 tomcat-prod.pem scp -i /Users/sami/Desktop/ssh_aws_key/tomcat-prod.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
 
                         }
                     }
                 }
             }
+   
     }
 }
