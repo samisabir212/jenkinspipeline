@@ -3,8 +3,8 @@ pipeline {
 
     parameters {
            /*parameters to supply in the deployment execution statement*/
-           string(name: 'tomcat_stage', defaultValue: '35.166.210.154', description: 'Staging Server')
-           string(name: 'tomcat_prod', defaultValue: '34.209.233.6', description: 'Production Server')    }
+           string(name: 'tomcat_stage', defaultValue: '52.87.178.24', description: 'Staging Server')
+           string(name: 'tomcat_prod', defaultValue: '52.91.113.146', description: 'Production Server')    }
 
     triggers {
         /*poll the git rep every 1 minute*/
